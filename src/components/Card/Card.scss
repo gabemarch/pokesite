@@ -1,0 +1,12 @@
+.card {
+  display: flex;
+  .poke-list {
+    
+    &-item {
+      list-style: none;
+      font-weight: bold;
+      text-align: center;
+      text-transform: capitalize;
+    }
+  }
+}

@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { useCallback, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { getPokemonRequest } from './shared/actions/pokemon';
+import { Home } from './pages/Home';
+import { Card } from './components/Card';
+import { IPokeModel, IPokemonState } from './shared/reducers/pokemon';
+export interface IState {
+  pokemon: IPokemonState;
 }
 
-export default App;
+const App = () => {
+  const pokes = useSelector<IState, IPokeModel[]>(
+    (state) => state.pokemon.pokemons,
+  );
+
+  const dispatch = useDispatch();
+
+  const actionGetPokes = useCallback(() => {
+    dispatch(getPokemonRequest());
+  }, [dispatch]);
+
+  useEffect(() => {
+    actionGetPokes();
+  }, [actionGetPokes]);
+
+  return (
+    <>
+      <Home />
+      {pokes.map((data) => (
+        <Card key={data.id} data={data} />
+      ))}
+    </>
+  );
+};
+
+export default connect(
+  ({ pokemon }) => ({ pokemon }),
+  {
+    getPokemonRequest
+  }
+)(App);
