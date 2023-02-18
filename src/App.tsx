@@ -4,6 +4,7 @@ import { getPokemonRequest } from './shared/actions/pokemon';
 import { Home } from './pages/Home';
 import { Card } from './components/Card';
 import { IPokeModel, IPokemonState } from './shared/reducers/pokemon';
+import { PaginationButton } from './components/PaginationButton';
 export interface IState {
   pokemon: IPokemonState;
 }
@@ -29,6 +30,7 @@ const App = () => {
       {pokes.map((data) => (
         <Card key={data.id} data={data} />
       ))}
+      <PaginationButton />
     </>
   );
 };
