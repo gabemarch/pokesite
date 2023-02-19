@@ -1,8 +1,21 @@
 .home-title {
   text-align: center;
+  font-size: 3em;
+  padding: 1rem;
 }
 
 .search {
   display: flex;
   justify-content: center;
+  align-items: center;
+  &-input {
+    border-radius: 50px;
+    height: 6vh;
+    width: 15vw;
+    padding: 1rem;
+    border: none;
+    &:focus {
+      outline-color: green;
+    }
+  }
 }

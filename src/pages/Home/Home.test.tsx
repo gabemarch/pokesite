@@ -10,7 +10,7 @@ describe('<Home />', () => {
   test('render search input with a button', () => {
     render(<Home />)
 
-    expect(screen.getByPlaceholderText('search pokemon')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Search pokemon')).toBeInTheDocument();
 
     const button = screen.getByTestId('button')
     fireEvent.click(button)

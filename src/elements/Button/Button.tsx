@@ -1,6 +1,6 @@
 import './Button.scss';
 
-export const Button = ({text, disabled, colorType}: any) => {
+export const Button = ({ text, disabled, colorType, onClick }: any) => {
   let color = 'default';
   switch (colorType) {
     case 'primary':
@@ -17,6 +17,11 @@ export const Button = ({text, disabled, colorType}: any) => {
   }
 
   return (
-    <button disabled={disabled} className={`button-${color}`}>{text}</button>
+    <button
+      disabled={disabled}
+      className={`btn button-${color}`}
+      onClick={onClick}>
+      {text}
+    </button>
   )
 }

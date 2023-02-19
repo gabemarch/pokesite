@@ -1,3 +1,4 @@
+import { Button } from '../../elements/Button';
 import './Home.scss';
 
 export const Home = () => {
@@ -8,8 +9,12 @@ export const Home = () => {
         <input
           className="search-input"
           type="search"
-          placeholder='search pokemon' />
-        <button data-testid="button" className="search-button">Search</button>
+          placeholder='Search pokemon' />
+        <Button
+          data-testid="button"
+          colorType="primary"
+          className="search-button"
+          text="Search" />
       </div>
     </>
   )

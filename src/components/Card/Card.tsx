@@ -1,3 +1,4 @@
+import { Button } from '../../elements/Button';
 import './Card.scss';
 
 export const Card = ({ data }: any) => {
@@ -9,7 +10,11 @@ export const Card = ({ data }: any) => {
           key={data.id}>
           {data.name}
         </li>
-        <img src={data.img} alt={`poke-${data.name}`} />
+        <img
+          className="poke-list-item-image"
+          src={data.img}
+          alt={`poke-${data.name}`} />
+        <button className="poke-list-item-button" onClick={() => {}}>See more</button>
       </ul>
     </div>
   );

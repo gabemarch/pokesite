@@ -5,6 +5,7 @@ import { Home } from './pages/Home';
 import { Card } from './components/Card';
 import { IPokeModel, IPokemonState } from './shared/reducers/pokemon';
 import { PaginationButton } from './components/PaginationButton';
+import './App.scss'
 export interface IState {
   pokemon: IPokemonState;
 }
@@ -25,13 +26,17 @@ const App = () => {
   }, [actionGetPokes]);
 
   return (
-    <>
+    <div className="app">
       <Home />
-      {pokes.map((data) => (
-        <Card key={data.id} data={data} />
-      ))}
-      <PaginationButton />
-    </>
+      <div className="card-container">
+        {pokes.map((data) => (
+          <Card key={data.id} data={data} />
+        ))}
+      </div>
+      <div className="app-pagination">
+        <PaginationButton />
+      </div>
+    </div>
   );
 };
 

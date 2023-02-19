@@ -1,12 +1,39 @@
 .card {
   display: flex;
+  width: 20%;
+  justify-content: center;
   .poke-list {
-    
+    border: 1px solid grey;
+    padding: 3rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    box-shadow: 3px 7px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
     &-item {
       list-style: none;
       font-weight: bold;
       text-align: center;
       text-transform: capitalize;
+    }
+    &-item-button {
+      background-color: #2091eb;
+      color: white;
+      border: none;
+      padding: .5rem;
+      display: flex;
+      width: 5vw;
+      justify-content: center;
+      margin: 0 auto;
+      cursor: pointer;
+      &:hover {
+        transition: .2s ease-in;
+        background-color: #4e61b0;
+      }
+    }
+    &-item-image {
+      width: 7vw;
+      height: 7vw;
+      cursor: pointer;
     }
   }
 }

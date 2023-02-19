@@ -1,9 +1,30 @@
+.btn {
+  padding: 1.1rem;
+  width: 10vw;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  justify-content: center;
+  margin: 1rem;
+  cursor: pointer;
+}
+
 .button-default  {
   background-color: grey;
+  color: white;
+  &:hover {
+    transition: .1s ease-in;
+    background-color: #414042;
+  }
 }
 
 .button-primary {
   background-color: green;
+  color: white;
+  &:hover {
+    transition: .1s ease-in;
+    background-color: darkgreen;
+  }
 }
 
 .button-warning {
