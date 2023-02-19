@@ -67,7 +67,8 @@ export const pokemonReducer = (state: IPokemonState = INITIAL_STATE_POKE, action
     case ActionTypes.GET_POKEMON_SUCCESS:
       return {
         ...state,
-        pokemons: action.payload.data
+        pokemons: action.payload.data,
+        pages: action.payload.pagination
       };
     default:
       return state;

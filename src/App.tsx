@@ -4,8 +4,8 @@ import { getPokemonRequest } from './shared/actions/pokemon';
 import { Home } from './pages/Home';
 import { Card } from './components/Card';
 import { IPokeModel, IPokemonState } from './shared/reducers/pokemon';
-import { PaginationButton } from './components/PaginationButton';
 import './App.scss'
+import { Pagination } from '@material-ui/lab';
 export interface IState {
   pokemon: IPokemonState;
 }
@@ -15,15 +15,29 @@ const App = () => {
     (state) => state.pokemon.pokemons,
   );
 
+  const pagination = useSelector<IState, number>(
+    (state) => state.pokemon.pages,
+  );
+
+  console.log('PAGI', pagination)
+
   const dispatch = useDispatch();
 
   const actionGetPokes = useCallback(() => {
-    dispatch(getPokemonRequest());
+    dispatch(getPokemonRequest(1));
   }, [dispatch]);
 
   useEffect(() => {
     actionGetPokes();
   }, [actionGetPokes]);
+
+
+  const handlePagination = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    dispatch(getPokemonRequest(value));
+  };
 
   return (
     <div className="app">
@@ -34,15 +48,15 @@ const App = () => {
         ))}
       </div>
       <div className="app-pagination">
-        <PaginationButton />
+        <Pagination
+          showFirstButton
+          showLastButton
+          count={Math.ceil(pagination / 20)}
+          onChange={handlePagination}
+        />
       </div>
     </div>
   );
 };
 
-export default connect(
-  ({ pokemon }) => ({ pokemon }),
-  {
-    getPokemonRequest
-  }
-)(App);
+export default App;
