@@ -4,10 +4,9 @@ import * as actions from '../actions/pokemon';
 import api from '../api/pokemon';
 
 function* getPokemon(action: any) {
-  const sumOffsetLimit = (action?.payload - 1) * 20;
+  const offsetLimit = (action?.payload - 1) * 20;
   try {
-    // @ts-ignore
-    const { data } = yield call(api.get, `/pokemon?offset=${sumOffsetLimit}`);
+    const { data } = yield call(api.get, `/pokemon?offset=${offsetLimit}`);
 
     yield delay(1000);
 
@@ -30,7 +29,6 @@ function* getPokemon(action: any) {
       payload: { pagination: data.count, data: getOnlyData },
     });
 
-    console.log('RESULT', getOnlyData)
   } catch (error) {
     console.error(error);
   }

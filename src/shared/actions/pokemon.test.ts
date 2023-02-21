@@ -1,22 +1,16 @@
-import { applyMiddleware } from 'redux';
-// import { ActionTypes, getPokemonRequest, getPokemonSuccess } from './pokemon';
-import configureStore from 'redux-mock-store';
-import createSagaMiddleware from 'redux-saga';
-import MockAdapter from 'axios-mock-adapter';
-import axios from 'axios';
+import { ActionTypes, getPokemonRequest, getPokemonSuccess } from './pokemon';
 
-const sagaMiddleware = createSagaMiddleware();
-//@ts-ignore
-const mockStore = configureStore(applyMiddleware(sagaMiddleware))
-// const mock = new MockAdapter(axios);
-const store = mockStore({});
+const mockData = {
+  value: 1,
+  data: [],
+  pagination: 111
+}
 
 describe('Actions', () => {
-  beforeEach(() => {
-    store.clearActions();
-  });
-
-  test('should get pokemons', () => {
-    
+  test('should get getPokemonRequest action', () => {
+    expect(getPokemonRequest(mockData.value).type).toEqual(ActionTypes.GET_POKEMON_REQUEST)
+  })
+  test('should get getPokemonSuccess action', () => {
+    expect(getPokemonSuccess(mockData.data, mockData.pagination).type).toEqual(ActionTypes.GET_POKEMON_SUCCESS);
   })
 })

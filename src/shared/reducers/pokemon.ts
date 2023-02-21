@@ -1,3 +1,4 @@
+import { isLoading } from './../actions/pokemon';
 import { ActionTypes } from '../actions/pokemon';
 
 export interface IPokeStats {
@@ -44,7 +45,8 @@ export interface IPokeModel {
   abilities: IPokeAbilities[];
 }
 
-export interface IPokemonState {
+export interface PokemonState {
+  isLoading: boolean;
   pokemons: IPokeModel[];
   pages: number;
   error: string;
@@ -53,7 +55,13 @@ export interface IPokemonState {
   currentPokemon: any;
 }
 
-export const INITIAL_STATE_POKE: IPokemonState = {
+export enum LoadingStatus {
+  LOADING = 'loading',
+  LOADED = 'loaded',
+}
+
+export const initialState: PokemonState = {
+  isLoading: false,
   pokemons: [],
   pages: 0,
   error: '',
@@ -62,11 +70,17 @@ export const INITIAL_STATE_POKE: IPokemonState = {
   currentPokemon: {},
 };
 
-export const pokemonReducer = (state: IPokemonState = INITIAL_STATE_POKE, action: any) => {
+export const pokemonReducer = (state: PokemonState = initialState, action: any) => {
   switch (action.type) {
+    case ActionTypes.IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading
+      }
     case ActionTypes.GET_POKEMON_SUCCESS:
       return {
         ...state,
+        isLoading: LoadingStatus.LOADED,
         pokemons: action.payload.data,
         pages: action.payload.pagination
       };
