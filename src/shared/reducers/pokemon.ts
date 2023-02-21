@@ -1,4 +1,3 @@
-import { isLoading } from './../actions/pokemon';
 import { ActionTypes } from '../actions/pokemon';
 
 export interface IPokeStats {
@@ -72,11 +71,6 @@ export const initialState: PokemonState = {
 
 export const pokemonReducer = (state: PokemonState = initialState, action: any) => {
   switch (action.type) {
-    case ActionTypes.IS_LOADING:
-      return {
-        ...state,
-        isLoading: action.payload.isLoading
-      }
     case ActionTypes.GET_POKEMON_SUCCESS:
       return {
         ...state,
@@ -84,6 +78,25 @@ export const pokemonReducer = (state: PokemonState = initialState, action: any) 
         pokemons: action.payload.data,
         pages: action.payload.pagination
       };
+    case ActionTypes.SEARCH_POKEMON:
+      return {
+        ...state,
+        isLoading: LoadingStatus.LOADING
+      }
+    case ActionTypes.SEARCH_POKEMON_SUCCESS:
+      return {
+        ...state,
+        isLoading: LoadingStatus.LOADED,
+        pokemons: [action.payload],
+        
+      }
+    case ActionTypes.SEARCH_POKEMON_FAILURE:
+      return {
+        ...state,
+        isLoading: LoadingStatus.LOADED,
+        pokemons: [],
+        error: 'Error'
+      }
     default:
       return state;
   }

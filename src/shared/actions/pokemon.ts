@@ -1,15 +1,12 @@
 import { IPokeModel } from './../reducers/pokemon';
 
 export const ActionTypes = {
-  IS_LOADING: 'IS_LOADING',
   GET_POKEMON_REQUEST: 'GET_POKEMON_REQUEST',
-  GET_POKEMON_SUCCESS: 'GET_POKEMON_SUCCESS'
+  GET_POKEMON_SUCCESS: 'GET_POKEMON_SUCCESS',
+  SEARCH_POKEMON: 'SEARCH_POKEMON',
+  SEARCH_POKEMON_SUCCESS: 'SEARCH_POKEMON_SUCCESS',
+  SEARCH_POKEMON_FAILURE: 'SEARCH_POKEMON_FAILURE'
 };
-
-export const isLoading = (isLoading: boolean) => ({
-  type: ActionTypes.IS_LOADING,
-  payload: isLoading
-})
 
 export const getPokemonRequest = (value: number) => ({
   type: ActionTypes.GET_POKEMON_REQUEST,
@@ -19,4 +16,18 @@ export const getPokemonRequest = (value: number) => ({
 export const getPokemonSuccess = (data: IPokeModel[], pagination: number) => ({
   type: ActionTypes.GET_POKEMON_SUCCESS,
   payload: { data, pagination }
+});
+
+export const searchPokemon = (data: string) => ({
+  type: ActionTypes.SEARCH_POKEMON,
+  payload: data
+});
+
+export const searchPokemonSuccess = (data: IPokeModel) => ({
+  type: ActionTypes.SEARCH_POKEMON_SUCCESS,
+  payload: data
+});
+
+export const searchPokemonFailure = () => ({
+  type: ActionTypes.SEARCH_POKEMON_FAILURE
 });

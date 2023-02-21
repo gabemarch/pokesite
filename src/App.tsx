@@ -5,7 +5,7 @@ import { Home } from './pages/Home';
 import { Card } from './components/Card';
 import { IPokeModel, PokemonState } from './shared/reducers/pokemon';
 import './App.scss'
-import { Pagination } from '@material-ui/lab';
+import { Pagination, Skeleton } from '@material-ui/lab';
 export interface IState {
   pokemon: PokemonState;
 }
@@ -23,8 +23,6 @@ const App = () => {
   const pagination = useSelector<IState, number>(
     (state) => state.pokemon.pages,
   );
-
-  console.log('PAGI', pagination)
 
   const dispatch = useDispatch();
 
@@ -44,7 +42,7 @@ const App = () => {
     dispatch(getPokemonRequest(value));
   };
 
-  console.log('LOADING', loading)
+  console.log('pokes', pokes)
 
   return (
     <div className="app">
@@ -66,7 +64,10 @@ const App = () => {
             />
           </div>
         </> :
-        <p>Loading placeholder</p> }
+        <div className="app-spinner">
+          <Skeleton animation="wave" variant="circle" width={96} height={96} />
+        </div>
+      }
     </div>
   );
 };
