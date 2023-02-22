@@ -1,6 +1,15 @@
 import './Button.scss';
 
-export const Button = ({ text, disabled, colorType, onClick }: any) => {
+export interface ButtonProps {
+  className?: string,
+  type?: string,
+  text: string,
+  disabled: boolean,
+  colorType: string,
+  onClick: () => void
+}
+
+export const Button = ({ text, disabled, colorType, onClick }: ButtonProps) => {
   let color = 'default';
   switch (colorType) {
     case 'primary':

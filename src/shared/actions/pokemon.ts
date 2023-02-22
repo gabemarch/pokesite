@@ -1,4 +1,4 @@
-import { IPokeModel } from './../reducers/pokemon';
+import { PokeModel } from "../typings/pokeTypes";
 
 export const ActionTypes = {
   GET_POKEMON_REQUEST: 'GET_POKEMON_REQUEST',
@@ -13,7 +13,7 @@ export const getPokemonRequest = (value: number) => ({
   payload: value
 });
 
-export const getPokemonSuccess = (data: IPokeModel[], pagination: number) => ({
+export const getPokemonSuccess = (data: PokeModel[], pagination: number) => ({
   type: ActionTypes.GET_POKEMON_SUCCESS,
   payload: { data, pagination }
 });
@@ -23,7 +23,7 @@ export const searchPokemon = (data: string) => ({
   payload: data
 });
 
-export const searchPokemonSuccess = (data: IPokeModel) => ({
+export const searchPokemonSuccess = (data: PokeModel) => ({
   type: ActionTypes.SEARCH_POKEMON_SUCCESS,
   payload: data
 });

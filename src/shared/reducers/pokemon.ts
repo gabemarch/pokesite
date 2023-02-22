@@ -1,63 +1,6 @@
 import { ActionTypes } from '../actions/pokemon';
+import { PokemonState, LoadingStatus } from '../typings/pokeTypes';
 
-export interface IPokeStats {
-  base_stat: number;
-  effort: number;
-  stat: {
-    name: string;
-  };
-}
-
-export interface IPokeAbilities {
-  ability: {
-    name: string;
-  };
-}
-
-export interface IPokeTypes {
-  slot: number;
-  type: {
-    name:
-    | 'grass'
-    | 'fire'
-    | 'water'
-    | 'bug'
-    | 'normal'
-    | 'poison'
-    | 'electric'
-    | 'ground'
-    | 'fairy'
-    | 'fighting'
-    | 'flying'
-    | 'rock';
-    url: string;
-  };
-}
-
-export interface IPokeModel {
-  name: string;
-  url: string;
-  id: number | string;
-  img: string;
-  types: IPokeTypes[];
-  stats: IPokeStats[];
-  abilities: IPokeAbilities[];
-}
-
-export interface PokemonState {
-  isLoading: boolean;
-  pokemons: IPokeModel[];
-  pages: number;
-  error: string;
-  stats: IPokeStats[];
-  abilities: IPokeAbilities[];
-  currentPokemon: any;
-}
-
-export enum LoadingStatus {
-  LOADING = 'loading',
-  LOADED = 'loaded',
-}
 
 export const initialState: PokemonState = {
   isLoading: false,
@@ -88,7 +31,7 @@ export const pokemonReducer = (state: PokemonState = initialState, action: any) 
         ...state,
         isLoading: LoadingStatus.LOADED,
         pokemons: [action.payload],
-        
+
       }
     case ActionTypes.SEARCH_POKEMON_FAILURE:
       return {

@@ -42,10 +42,8 @@ export const Home = () => {
         >
           {({
             values,
-            errors,
             handleChange,
             handleSubmit,
-            touched,
             submitForm,
           }) => (
             <Form onSubmit={handleSubmit}>
@@ -61,9 +59,9 @@ export const Home = () => {
                 type="submit"
                 data-testid="button"
                 colorType="primary"
-                className="search-button"
                 text="Search"
                 onClick={submitForm}
+                disabled={false}
               />
             </Form>
           )}

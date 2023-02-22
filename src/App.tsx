@@ -1,26 +1,26 @@
 import { useCallback, useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPokemonRequest } from './shared/actions/pokemon';
 import { Home } from './pages/Home';
 import { Card } from './components/Card';
-import { IPokeModel, PokemonState } from './shared/reducers/pokemon';
 import './App.scss'
 import { Pagination, Skeleton } from '@material-ui/lab';
-export interface IState {
+import { PokemonState, PokeModel } from './shared/typings/pokeTypes';
+export interface AppState {
   pokemon: PokemonState;
 }
 
 const App = () => {
 
-  const loading = useSelector<IState, any>(
+  const loading = useSelector<AppState, any>(
     (state) => state.pokemon.isLoading,
   );
 
-  const pokes = useSelector<IState, IPokeModel[]>(
+  const pokes = useSelector<AppState, PokeModel[]>(
     (state) => state.pokemon.pokemons,
   );
 
-  const pagination = useSelector<IState, number>(
+  const pagination = useSelector<AppState, number>(
     (state) => state.pokemon.pages,
   );
 
@@ -41,8 +41,6 @@ const App = () => {
   ) => {
     dispatch(getPokemonRequest(value));
   };
-
-  console.log('pokes', pokes)
 
   return (
     <div className="app">
