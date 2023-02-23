@@ -11,7 +11,6 @@ export const Home = () => {
   const handleSubmit = useCallback(
     (value: any) => {
       if (value) {
-        console.log('VALUE', searchPokemon(value))
         dispatch(searchPokemon(value));
         return;
       }

@@ -40,6 +40,11 @@ export const pokemonReducer = (state: PokemonState = initialState, action: any) 
         pokemons: [],
         error: 'Error'
       }
+    case ActionTypes.GET_CURRENT_POKEMON:
+      return {
+        ...state,
+        currentPokemon: state.pokemons.find(item => item.id === action.payload.id)
+      }
     default:
       return state;
   }

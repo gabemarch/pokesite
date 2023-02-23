@@ -6,14 +6,24 @@ import { Card } from './components/Card';
 import './App.scss'
 import { Pagination, Skeleton } from '@material-ui/lab';
 import { PokemonState, PokeModel } from './shared/typings/pokeTypes';
+import { Modal } from './components/Modal';
 export interface AppState {
   pokemon: PokemonState;
 }
+
+export interface GeneralState {
+  general: any
+}
+
 
 const App = () => {
 
   const loading = useSelector<AppState, any>(
     (state) => state.pokemon.isLoading,
+  );
+
+  const statusModal = useSelector<GeneralState, boolean>(
+    (state) => state.general.isModalOpen,
   );
 
   const pokes = useSelector<AppState, PokeModel[]>(
@@ -34,7 +44,6 @@ const App = () => {
     actionGetPokes();
   }, [actionGetPokes]);
 
-
   const handlePagination = (
     event: React.ChangeEvent<unknown>,
     value: number,
@@ -45,6 +54,12 @@ const App = () => {
   return (
     <div className="app">
       <Home />
+      {statusModal ?
+        <div className="modal-container">
+          <Modal />
+        </div> :
+        null
+      }
       {loading === 'loaded' ?
         <>
           <div className="card-container">

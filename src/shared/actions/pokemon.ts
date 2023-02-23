@@ -5,7 +5,8 @@ export const ActionTypes = {
   GET_POKEMON_SUCCESS: 'GET_POKEMON_SUCCESS',
   SEARCH_POKEMON: 'SEARCH_POKEMON',
   SEARCH_POKEMON_SUCCESS: 'SEARCH_POKEMON_SUCCESS',
-  SEARCH_POKEMON_FAILURE: 'SEARCH_POKEMON_FAILURE'
+  SEARCH_POKEMON_FAILURE: 'SEARCH_POKEMON_FAILURE',
+  GET_CURRENT_POKEMON: 'GET_CURRENT_POKEMON'
 };
 
 export const getPokemonRequest = (value: number) => ({
@@ -30,4 +31,9 @@ export const searchPokemonSuccess = (data: PokeModel) => ({
 
 export const searchPokemonFailure = () => ({
   type: ActionTypes.SEARCH_POKEMON_FAILURE
+});
+
+export const getCurrentPokemon = (id: number | string) => ({
+  type: ActionTypes.GET_CURRENT_POKEMON,
+  payload: { id }
 });

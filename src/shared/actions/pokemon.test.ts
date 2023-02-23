@@ -1,4 +1,4 @@
-import { ActionTypes, getPokemonRequest, getPokemonSuccess, searchPokemon, searchPokemonSuccess, searchPokemonFailure } from './pokemon';
+import { ActionTypes, getPokemonRequest, getPokemonSuccess, searchPokemon, searchPokemonSuccess, searchPokemonFailure, getCurrentPokemon } from './pokemon';
 
 const mockData = {
   value: 1,
@@ -39,5 +39,8 @@ describe('Actions', () => {
   })
   test('should get searchPokemonFailure action', () => {
     expect(searchPokemonFailure().type).toEqual(ActionTypes.SEARCH_POKEMON_FAILURE);
+  })
+  test('should get getCurrentPokemon action', () => {
+    expect(getCurrentPokemon(mockData.searchedData.id).type).toEqual(ActionTypes.GET_CURRENT_POKEMON);
   })
 })
